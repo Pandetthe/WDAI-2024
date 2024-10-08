@@ -1,0 +1,133 @@
+html {
+  height: 100% !important;
+}
+body {
+  min-height: 100% !important;
+  margin: 0;
+  padding: 0 5%;
+  background: radial-gradient(#257180 20%, black);
+  display: flex; /* Set body to flex container */
+  flex-direction: column;
+}
+section {
+  color: #f2e5bf;
+  align-content: center;
+  width: 100%;
+  overflow: auto;
+  flex: 1;
+}
+h1 {
+  text-align: center;
+}
+h3 {
+  text-align: center;
+}
+ol {
+  text-align: center;
+  list-style-position: inside;
+  padding: 0;
+}
+nav a {
+  color: #fd8b51;
+}
+.article-author {
+  color: #ffb0b0;
+}
+.link1,
+.link1 a {
+  color: #ffb0b0;
+}
+.link2,
+.link2 a {
+  color: #ffd09b;
+}
+.link3,
+.link3 a {
+  color: #ffecc8;
+}
+
+.img-container {
+  justify-content: center;
+  display: flex;
+  height: 30vw;
+  margin: 20px;
+}
+.container {
+  justify-content: center;
+  display: flex;
+}
+table {
+  justify-content: center;
+  width: 50%;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 3px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #257180;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #cb6040;
+}
+
+tr:nth-child(odd) {
+  background-color: #fd8b51;
+}
+
+tr:hover:nth-child(even) {
+  background-color: #ab5035;
+  color: white;
+}
+tr:hover:nth-child(odd) {
+  background-color: #eb814b;
+  color: white;
+}
+
+.square-grid {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px;
+  gap: 50px;
+}
+
+.square:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: red;
+}
+
+.square:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+  background-color: green;
+}
+
+.square:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+  background-color: blue;
+}
+
+.square:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
+  background-color: yellow;
+}
+
+.square:nth-child(5) {
+  grid-column: 3;
+  grid-row: 2;
+  background-color: violet;
+}
+.square {
+  width: 100px;
+  height: 100px;
+}
