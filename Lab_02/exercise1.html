@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stoper</title>
+  </head>
+  <body>
+    <div style="width: 200px">
+      <h1 id="display" style="width: 100%; text-align: center">0s</h1>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        "
+      >
+        <button onclick="start()">Start</button>
+        <button onclick="stop()">Stop</button>
+        <button onclick="reset()">Reset</button>
+      </div>
+    </div>
+    <script>
+      const display = document.getElementById("display");
+      var time = null;
+      var timer = null;
+      var msAdded = 0;
+      function start() {
+        time = Date.now();
+        displayTime();
+        timer = setInterval(displayTime, 100);
+      }
+      function stop() {
+        msAdded += Date.now() - time;
+        clearInterval(timer);
+      }
+      function reset() {
+        display.innerHTML = "0s";
+        time = null;
+        msAdded = 0;
+      }
+      function displayTime() {
+        if (time == null) return;
+        const diffMs = Date.now() - time + msAdded;
+        const seconds = Math.floor(diffMs / 1000) % 60;
+        const minutes = Math.floor(diffMs / (1000 * 60)) % 60;
+        const hours = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        let str = "";
+        str = seconds + "s";
+        if (minutes > 0) str = minutes + "min " + str;
+        if (hours > 0) str = hours + "h " + str;
+        if (days > 0) str = days + "d " + str;
+        display.innerHTML = str;
+      }
+    </script>
+  </body>
+</html>

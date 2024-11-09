@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pobieranie i wyświetlanie danych</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        #filter-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="filter-section">
+        <input type="text" id="filter-input" placeholder="Szukaj..." oninput="filterData()">
+        <select id="sort-select" onchange="sortData()">
+            <option value="original">Oryginalna kolejność</option>
+            <option value="asc">Rośnąco</option>
+            <option value="desc">Malejąco</option>
+        </select>
+    </div>
+    
+    <table id="product-table">
+        <thead>
+            <tr>
+                <th style="aspect-ratio: 1;">Zdjęcie</th>
+                <th>Tytuł</th>
+                <th>Opis</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const apiUrl = 'https://dummyjson.com/products';
+        let products = [];
+        async function fetchData() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                products = data.products.slice(0, 30);
+                displayData(products);
+            } catch (error) {
+                console.error('Błąd podczas pobierania danych:', error);
+            }
+        }
+
+        function displayData(products) {
+            const tableBody = document.querySelector('#product-table tbody');
+            tableBody.innerHTML = '';
+
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                
+                const imgCell = document.createElement('td');
+                const img = document.createElement('img');
+                img.src = product.thumbnail;
+                img.alt = product.name;
+                img.width = 50;
+                img.height = 50;
+                imgCell.appendChild(img);
+
+                const titleCell = document.createElement('td');
+                titleCell.textContent = product.title;
+
+                const descriptionCell = document.createElement('td');
+                descriptionCell.textContent = product.description;
+
+                row.appendChild(imgCell);
+                row.appendChild(titleCell);
+                row.appendChild(descriptionCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+        function filterData() {
+            const filterText = document.getElementById('filter-input').value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.title.toLowerCase().includes(filterText) ||
+                product.description.toLowerCase().includes(filterText)
+            );
+            displayData(filteredProducts);
+        }
+        function sortData() {
+            const sortOrder = document.getElementById('sort-select').value;
+            let sortedProducts = [...products];
+
+            if (sortOrder === 'asc') {
+                sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (sortOrder === 'desc') {
+                sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
+            }
+            displayData(sortedProducts);
+        }
+        window.onload = fetchData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator haseł</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; width: 50%; margin: 0 auto; gap: 5px">
+        <label>Minimalna długość:</label>
+        <input type="number" id="minLength" name="minLength">
+        <label>Maksymalna długość:</label>
+        <input type="number" id="maxLength" name="maxLength">
+        <label>
+            <input type="checkbox" id="upperLetters" name="upperLetters">
+            Czy hasło ma zawierać wielkie litery?
+        </label>
+        <label>
+            <input type="checkbox" id="specialChars" name="specialChars">
+            Czy hasło ma zawierać znaki specjalne?
+        </label>
+        <button id="generateButton">Wygeneruj hasło</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const generateButton = document.getElementById("generateButton");
+            generateButton.addEventListener("click", generatePassword);
+        });
+        function generatePassword() {
+            const minLength = parseInt(document.getElementById("minLength").value);
+            const maxLength = parseInt(document.getElementById("maxLength").value);
+            const includeUpper = document.getElementById("upperLetters").checked;
+            const includeSpecial = document.getElementById("specialChars").checked;
+            if (isNaN(minLength) || isNaN(maxLength) || minLength < 1 || maxLength < minLength) {
+                alert("Podaj prawidłową minimalną i maksymalną długość hasła!");
+                return;
+            }
+            if (minLength > maxLength)
+            {
+                alert("Minimalna długość nie może być dłuższa niż maksymalna!");
+                return;
+            }
+            const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+            const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+            const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            let charPool = lowerChars;
+            if (includeUpper) charPool += upperChars;
+            if (includeSpecial) charPool += specialChars;
+
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charPool.length);
+                password += charPool[randomIndex];
+            }
+            alert("Hasło: 'password'")
+        }
+    </script>
+</body>
+</html>
