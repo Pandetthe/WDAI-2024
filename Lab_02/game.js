@@ -51,6 +51,9 @@ function init() {
         canvas.addEventListener('mouseleave', onMouseLeave);
         AUDIO.pause();
         AUDIO.currentTime = 0;
+        zombieSpawnInterval = 3000; 
+        difficultyIncreaseInterval = 10000;
+        lastDifficultyIncrease = Date.now();
         zombieInterval = setInterval(spawnZombie, zombieSpawnInterval);
         window.requestAnimationFrame(update);
         if (DEBUG_MODE) console.log("Game started!");
@@ -126,7 +129,7 @@ function init() {
 
     function spawnZombie() {
         const scale = Math.random() * 0.7 + 0.5;
-        const speed = Math.random() * difLevel / 3 + 0.5;
+        const speed = Math.random() * difLevel / 1.5 + 0.5;
         const y = Math.random() * 40 - 20 + 700;
         const newZombie = new Zombie(ZOMBIE_SPRITE, { x: canvas.width, y: y }, speed, scale);
         if (DEBUG_MODE) console.log("New zombie spawned with: scale="+scale+", speed="+speed+", y="+y+".")

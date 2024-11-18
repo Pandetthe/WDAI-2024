@@ -3,18 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles1.css">
     <title>Stoper</title>
   </head>
   <body>
-    <div style="width: 200px">
-      <h1 id="display" style="width: 100%; text-align: center">0s</h1>
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        "
-      >
+    <div class="container">
+      <h1 id="display">0s</h1>
+      <div class="buttons">
         <button onclick="start()">Start</button>
         <button onclick="stop()">Stop</button>
         <button onclick="reset()">Reset</button>
@@ -26,17 +21,21 @@
       var timer = null;
       var msAdded = 0;
       function start() {
+        if (timer != null) return;
         time = Date.now();
         displayTime();
         timer = setInterval(displayTime, 100);
       }
       function stop() {
+        if (timer == null) return;
         msAdded += Date.now() - time;
         clearInterval(timer);
+        timer = null;
       }
       function reset() {
+        stop();
         display.innerHTML = "0s";
-        time = null;
+        time = Date.now();
         msAdded = 0;
       }
       function displayTime() {

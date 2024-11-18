@@ -3,23 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles3.css">
     <title>Pobieranie i wyświetlanie danych</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        #filter-section {
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
 <body>
     <div id="filter-section">
@@ -39,7 +24,9 @@
                 <th>Opis</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+
+        </tbody>
     </table>
 
     <script>
@@ -49,7 +36,8 @@
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
-                products = data.products.slice(0, 30);
+                products = data.products;
+                console.log(products)
                 displayData(products);
             } catch (error) {
                 console.error('Błąd podczas pobierania danych:', error);
@@ -59,7 +47,6 @@
         function displayData(products) {
             const tableBody = document.querySelector('#product-table tbody');
             tableBody.innerHTML = '';
-
             products.forEach(product => {
                 const row = document.createElement('tr');
                 
@@ -95,7 +82,6 @@
         function sortData() {
             const sortOrder = document.getElementById('sort-select').value;
             let sortedProducts = [...products];
-
             if (sortOrder === 'asc') {
                 sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
             } else if (sortOrder === 'desc') {

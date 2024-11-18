@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles2.css">
     <title>Generator haseł</title>
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; width: 50%; margin: 0 auto; gap: 5px">
+    <div class="container">
         <label>Minimalna długość:</label>
         <input type="number" id="minLength" name="minLength">
         <label>Maksymalna długość:</label>
@@ -53,7 +54,7 @@
                 const randomIndex = Math.floor(Math.random() * charPool.length);
                 password += charPool[randomIndex];
             }
-            alert("Hasło: 'password'")
+            alert("Hasło: '"+password+"'")
         }
     </script>
 </body>
