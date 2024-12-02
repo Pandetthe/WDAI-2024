@@ -51,12 +51,12 @@ router.post('/', authenticateJWT, async function(req, res, _next) {
 router.delete('/:id', authenticateJWT, async function(req, res, _next) {
   try {
     const bookId = req.params.id;
-    const deletedId = await Book.destroy({
+    const deleted = await Book.destroy({
       where: {
         id: bookId,
       },
     });
-    if (deletedId == bookId) {
+    if (deleted == 1) {
       return res.status(201).json({ message: `Book with ID ${bookId} has been deleted.` });
     }
     return res.status(404).json({ message: `Book with ID ${bookId} not found.` });

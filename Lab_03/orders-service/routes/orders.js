@@ -44,12 +44,12 @@ router.post('/', authenticateJWT, async function(req, res, _next) {
 router.delete('/:id', authenticateJWT, async function(req, res, _next) {
   try {
     const orderId = req.params.id;
-    const deletedId = await Order.destroy({
+    const deleted = await Order.destroy({
       where: {
         id: orderId,
       },
     });
-    if (deletedId == orderId) {
+    if (deleted == 1) {
       return res.status(201).json({ message: `Order with ID ${orderId} has been deleted.` });
     }
     return res.status(404).json({ message: `Order with ID ${orderId} not found.` });

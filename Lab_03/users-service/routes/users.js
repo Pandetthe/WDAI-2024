@@ -2,19 +2,9 @@
 
 const express = require('express');
 const { User } = require('../models');
-const { authenticateJWT, createJWT } = require('../middlewares/JWT');
+const { createJWT } = require('../middlewares/JWT');
 
 const router = express.Router();
-
-router.get('/', authenticateJWT, async function(_req, res, _next) {
-  try {
-    const users = await User.findAll();
-    res.json(users); 
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
 
 router.post('/register', async function(req, res, _next) {
   const { email, password } = req.body;

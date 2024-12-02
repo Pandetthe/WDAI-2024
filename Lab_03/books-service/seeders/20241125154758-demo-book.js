@@ -7,13 +7,13 @@ module.exports = {
   async up (_queryInterface, _Sequelize) {
     return Book.bulkCreate([
       {
-        title: 'Really weird book',
-        author: 'Nobody knows',
+        title: 'Book A',
+        author: 'Author C',
         year: '1999',
       },
       {
-        title: 'Weirder stupid book',
-        author: 'Joe',
+        title: 'Book B',
+        author: 'Author B',
         year: '1969',
       },
     ], {
