@@ -29,7 +29,7 @@ router.post('/login', async function(req, res, _next) {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email: email } });
-    if (await user.comparePassword(password)) {
+    if (user && await user.comparePassword(password)) {
       const token = createJWT(user.id);
       return res.status(200).json({ token: token });
     } else {
