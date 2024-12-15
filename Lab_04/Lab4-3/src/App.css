@@ -1,0 +1,66 @@
+header {
+  display: flex;
+  background-color: #111111;
+  width: 100vw;
+  height: 10%;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+}
+header h1 {
+  padding: .5rem 10rem;
+  width: 20vw;
+  font-size: large;
+}
+header nav {
+  padding: .5rem 10rem;
+  width: 80vw;
+}
+header nav ul {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  transition: transform .2s;
+}
+a:hover {
+  color: rgb(165, 165, 165);
+  transform: scale(1.1);
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+main {
+  margin: auto;
+  width: 80%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+}
+.articlesContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+.container {
+  text-align: center;
+}
