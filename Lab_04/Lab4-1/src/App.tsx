@@ -14,6 +14,8 @@ import Odliczanie from './components/efekty/Odliczanie'
 import Komentarz from './components/produkty/Komentarz'
 import { User } from './components/produkty/Komentarz'
 import Komentarze from './components/produkty/Komentarze'
+import Studenci from './components/studenci/Studenci'
+import StudentManager from './components/studenci/StudentManager'
 const user: User = {
   id: 1,
   fullName: 'John Doe',
@@ -41,9 +43,17 @@ function App() {
       <Ternary />
       <h2>Aktualizacja</h2>
       <Aktualizacja />
+      <h1>Studenci</h1>
+      <h2>Studenci</h2>
+      <Studenci />
+      <h2>StudenciManager</h2>
+      <StudentManager />
       <h1>Efekty</h1>
+      <h2>Licznik</h2>
       <LicznikEfekty />
+      <h2>Tytuł</h2>
       <Tytul />
+      <h2>Odliczanie</h2>
       <Odliczanie />
       <h1>Produkty</h1>
       <h2>Komentarz</h2>
